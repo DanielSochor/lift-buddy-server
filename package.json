@@ -1,0 +1,23 @@
+{
+  "name": "liftbuddy-server",
+  "version": "1.0.0",
+  "description": "server for liftbuddy",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielSochor/LiftBuddy-Server.git"
+  },
+  "author": "daniel-sochor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielSochor/LiftBuddy-Server/issues"
+  },
+  "homepage": "https://github.com/DanielSochor/LiftBuddy-Server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
