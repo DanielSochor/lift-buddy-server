@@ -13,6 +13,10 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
+// add the route directly here for now
+app.get('api/user', function(request, response) {
+    response.send('Hellow World!');
+});
 
 // Start the API server
 app.listen(PORT, () =>
