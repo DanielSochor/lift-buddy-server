@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Add routes, both API and view
 // add the route directly here for now
-app.get('api/user', (request, response) => {
+app.get('*', (request, response) => {
     //response.send('Hello World!');
     console.log('server hit, response is');
     console.log(response);
