@@ -18,12 +18,14 @@ app.use(cors());
 
 // Add routes, both API and view
 // add the route directly here for now
-app.get('/', (req, res) => {
+app.get('/', (request, response) => {
     //response.send('Hello World!');
-    res.json('a');
+    response.json('a');
     //console.log('server hit, response is');
     //console.log(response);
 });
+
+
 
 // Start the API server
 app.listen(PORT, () =>
