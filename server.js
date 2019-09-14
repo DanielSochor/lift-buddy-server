@@ -25,7 +25,9 @@ app.get('/', (request, response) => {
     //console.log(response);
 });
 
-
+app.get('api/user', (request, response) => {
+    response.json('c');
+});
 
 // Start the API server
 app.listen(PORT, () =>
