@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "if-env NODE_ENV=production ?? npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "node server.js",
+    "start:dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "start:devv": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd ../LiftBuddy-Client && npm run start"
+    "client": "cd ../LiftBuddy-Client && npm start"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "path": "^0.12.7"
   }
 }
