@@ -20,7 +20,7 @@ app.use(cors());
 // add the route directly here for now
 app.get('/', (request, response) => {
     //response.send('Hello World!');
-    response.json('a');
+    response.json('b');
     //console.log('server hit, response is');
     //console.log(response);
 });
