@@ -7,27 +7,14 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-// Serve up static assets (usually on heroku)
-//if (process.env.NODE_ENV === "production") {
-//  app.use(express.static(path.join(__dirname, 'client/build')));
-//}
 
-//app.get('*', (request,response => {
-    //response.sendFile(path.join(__dirname, 'client/build','index.html'));
-//}));
+// Serve up static assets (usually on heroku)
+// if (process.env.NODE_ENV === "production") {
+//  app.use(express.static('client/build'));
+// }
 
 // Add routes, both API and view
-// add the route directly here for now
-
 require('./routes/routes')(app);
-
-// app.get('/', (request, response) => {
-//     response.json('b');
-// });
-
-// app.get('/api/user', (request, response) => {
-//     response.json('c');
-// });
 
 // Start the API server
 app.listen(PORT, () =>
