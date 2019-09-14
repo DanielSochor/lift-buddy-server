@@ -16,13 +16,11 @@ app.use(cors());
     //response.sendFile(path.join(__dirname, 'client/build','index.html'));
 //}));
 
-var test = "1";
-
 // Add routes, both API and view
 // add the route directly here for now
-app.get('api/user', (request, response) => {
+app.get('api/user', (req, res) => {
     //response.send('Hello World!');
-    response(test);
+    res.json('a');
     //console.log('server hit, response is');
     //console.log(response);
 });
