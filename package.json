@@ -5,12 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node.js",
-    "startt": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "startt:prod": "node server.js",
-    "startt:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "clientt": "cd ../LiftBuddy-Client && npm run start",
-    "buildd": "cd client && npm run build"
+    "start": "node.js"
   },
   "repository": {
     "type": "git",
