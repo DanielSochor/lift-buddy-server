@@ -3,7 +3,7 @@ var user = require("./user_controller");
 module.exports = function (app) {
 
     //displays during view of backend
-    app.get('*', (request, response) => {
+    app.get('/', (request, response) => {
         response.json('just the back end for me');
     });
     
