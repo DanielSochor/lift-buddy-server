@@ -2,6 +2,7 @@ let users = require('./user_ORM_functions');
 
 let user = {
     create: function (request, response) {
+        console.log('step 1');
         let userRequest = {
             email_address: 'test',
         };
