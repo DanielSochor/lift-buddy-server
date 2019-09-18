@@ -13,4 +13,4 @@ let config = {
     }
 };
 
-module.exports = config[process.env.NODE_ENV || 'local'];
+module.exports = config[process.env.APP_ENV || 'local'];
