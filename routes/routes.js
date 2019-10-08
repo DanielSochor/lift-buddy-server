@@ -14,10 +14,21 @@ module.exports = function (app) {
 
     //login route
     app.post('/api/user', (request, response) => {
-        //console.log(request);
-        response.json('just the front end for me now');
-        console.log('step 0');
-        //user.create(request,response)
+        console.log('route request is:' + request);
+        console.log('test 0 key is: ' + Object.keys(request)[0]);
+        console.log('test 0 value is: ' + Object.values(request)[0]);
+        //response.json('just the front end for me now');
+        console.log('app.post(/api/user) at routes');
+        //how/where is this request created????
+        user.create(request,response)
+
+
+
+
+
+
+
+
     });
 
 }; 
