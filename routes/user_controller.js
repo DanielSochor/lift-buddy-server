@@ -6,15 +6,6 @@ let user = {
 
         //console.log('request is: ' + request);
         //console.log(JSON.stringify(request));
-        //console.log('step 1');
-        //let userRequest = {
-        //    email_address: 'Test',
-        //
-
-        //try using request instead od new user request
-        //let userRequest = request;
-
-
 
         //the request creates a lot of junk
         //console.log('user request object key is: ' + Object.keys(userRequest)[0]);
