@@ -16,7 +16,7 @@ module.exports = function (app) {
     });
 
     //login route
-    //-app.post('/api/user', (request, response) => {
+    app.post('/api/user', (request, response) => {
         //Request has as lot of items in it and doesn't appear useful to show
         //console.log('route request is: ' + 'request has a lot of items in it');
         //console.log(request);
@@ -25,9 +25,9 @@ module.exports = function (app) {
         //console.log('test 0 value is: ');
         //console.log(Object.values(request)[0]);
         //response.json('just the front end for me now');
-        //-console.log('app.post(/api/user) at routes');
+        console.log('app.post(/api/user) at routes');
         //how/where is this request created????
-        //-user.create(request,response)
-    //-});
+        user.create(request,response)
+    });
 
 }; 
