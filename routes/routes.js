@@ -10,6 +10,7 @@ module.exports = function (app) {
     
     //displays during button press
     app.get('/api/user', (request, response) => {
+        console.log('server called');
         //This should show on heroku front end build
         response.json('just the front end for me');
     });
