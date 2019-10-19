@@ -16,20 +16,21 @@ let user = {
             if (error) {
                 console.log(error);
             } else {
-                console.log('users.insert New call works');
+                console.log('user_controller: users.insert New call works');
                 response.json({
                     email: request.email_address,
                 });
-                console.log('response is: ');
+                //console.log('user_controller: response is: ');
                 //Investigate this for where the null value comes from, why is email above shown as null
-                console.log(response._events);
-                console.log(response.email);
-                console.log(response);
-                console.log('response body is');
-                console.log(response.header);
+                //console.log(response._events);
+                //console.log(response.email);
+                //console.log(response);
+                console.log('user_controller: response body is');
+                console.log(response.req.body);
+                console.log(response.req.body.email_address);
                 //console.log(response.IncomingMessage.body);
                 //console.email is showing undefined
-                console.log('does the above value show as null?');
+                console.log('user_controller: does the above value show as null?');
             }
         });
     }

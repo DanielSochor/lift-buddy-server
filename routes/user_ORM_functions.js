@@ -14,8 +14,8 @@ let users = {
             table: 'users',
             data: user //do the keys of this object match the table columns?
         };
-        console.log('query is: ' + query);
-        console.log('query data is: ' + query.data);
+        //console.log('query is: ' + query);
+        console.log('user_ORM_funtions: query data is: ' + query.data);
         orm.insert(query, callback);
     }
 

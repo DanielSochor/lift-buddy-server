@@ -25,7 +25,7 @@ module.exports = function (app) {
         //console.log('test 0 value is: ');
         //console.log(Object.values(request)[0]);
         //response.json('just the front end for me now');
-        console.log('app.post(/api/user) at routes');
+        console.log('routes: app.post(/api/user) at routes is hit');
         //how/where is this request created????
         user.create(request,response)
     });
