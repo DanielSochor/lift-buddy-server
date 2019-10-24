@@ -2,13 +2,11 @@ var user = require("./user_controller");
 
 module.exports = function (app) {
 
-    //displays during view of backend
     app.get('/', (request, response) => {
         //This should show on heroku back end build
         response.json('just the back end for me');
     });
     
-    //displays during button press
     app.get('/api/user', (request, response) => {
         console.log('server called');
         //This should show on heroku front end build
