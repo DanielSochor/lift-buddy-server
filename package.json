@@ -4,9 +4,9 @@
   "description": "server for liftbuddy",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "start:unused": "if-env NODE_ENV===production ?? npm run start:prod || npm run start:dev",
+    "xtest": "echo \"Error: no test specified\" && exit 1",
+    "xstart": "nodemon server.js",
+    "xstart:unused": "if-env NODE_ENV===production ?? npm run start:prod || npm run start:dev",
     "xstart:prod": "node server.js",
     "xstart:dev": "concurrently \"nodemon server.js\" \"npm run client:dev\"",
     "xclient:prod": "cd ../LiftBuddy-Client && npm build",
