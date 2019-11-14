@@ -22,6 +22,7 @@ module.exports = function (app) {
         user.logout(request, response);
     });
     app.get("/api/user", authorizer.authenticate, function(request, response) {
+        console.log('app.get("/api/user" hit');
         user.getUserBySession(request, response);
     });
     app.get("/api/user/:id", authorizer.authenticate, function(request, response) {
