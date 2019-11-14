@@ -16,7 +16,7 @@
 //module.exports = config[process.env.APP_ENV || 'local'];
 
 module.exports = {
-    'development':{
+    'development': {
         'host': process.env.DB_HOST,
         'username': process.env.DB_USER,
         'password': process.env.DB_PASSWORD,
@@ -24,7 +24,13 @@ module.exports = {
         'port': process.env.DB_PORT,
         'DB_URL': 'mysql://root:root@127.0.0.1:8889/fitness_buddy'
     },
-    'production':{
+    'production': {
         'use_ENV_variable': process.env.JAWSDB_URL
-    }
+    },
+    local: {
+        mysql: {
+            url: process.env.DB_URL
+        },
+        apiKeys: {}
+    },
 }
