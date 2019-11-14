@@ -12,7 +12,7 @@ let users = {
     selectByEmail: function(email, callback){
         let query = {
             table: 'users',
-            where: [{email: email.toLowerCase()}]
+            where: [{email_address: email.toLowerCase()}]
         };
         orm.select(query, callback);
     },
@@ -27,7 +27,7 @@ let users = {
         let query = {
             table: 'users',
             data: {session_token: uuid},
-            where: [{email: email.toLowerCase()}]
+            where: [{email_address: email.toLowerCase()}]
         };
         orm.update(query, callback);
     },
@@ -42,7 +42,8 @@ let users = {
     getUserBySession: function(session, callback){
         let query = {
             table: 'users',
-            columns: ['email', 'id', 'created'],
+            //columns: ['email', 'id', 'created'],
+            columns: ['email_address', 'user_id'],
             where: [{session_token: session}]
         };
         orm.select(query, callback);
@@ -50,7 +51,8 @@ let users = {
     getUserByID: function(id, callback){
         let query = {
             table: 'users',
-            columns: ['email', 'id', 'created'],
+            //columns: ['email', 'id', 'created'],
+            columns: ['email_address', 'user_id'],
             where: [{id: id}]
         };
         orm.select(query, callback);
