@@ -1,4 +1,4 @@
-let users = require('../../models/user_ORM_functions');
+let users = require('./user_ORM_functions');
 
 let authorizer = {
     authenticate: function(request, response, next){
