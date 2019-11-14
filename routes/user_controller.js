@@ -3,15 +3,15 @@ let users = require('./user_ORM_functions');
 let user = {
     create: function(request, response){
         console.log(request.body);
-        if (!request.body.email.includes('@') || !request.body.email.includes('.')){
-            response.status(400).json({'error': 'email is not valid'});
+        if (!request.body.email_address.includes('@') || !request.body.email_address.includes('.')){
+            response.status(400).json({'error': 'email address is not valid'});
         } else if (request.body.password !== request.body.password_confirm){
             response.status(400).json({'error': 'passwords do not match'});
         } else {
             let hashedPassword = hashpass(request.body.password);
             let userRequest = {
                 //this need to be email or email_address
-                email: request.body.email,
+                email_address: request.body.email_address,
                 password: hashedPassword.hash,
                 salt: hashedPassword.salt,
                 username: request.body.username
@@ -28,7 +28,7 @@ let user = {
                 }else{
                     response.json({
                         id: result.insertId,
-                        email: userRequest.email,
+                        email: userRequest.email_address,
                         username: userRequest.username
                     });
                 }
@@ -48,7 +48,7 @@ let user = {
                 loginAttempt = hashpass(request.body.password, user.salt);
                 if (loginAttempt.hash === user.password){
                     let uuid = uuidv1();
-                    users.updateSession(user.email, uuid, function(error, result) {
+                    users.updateSession(user.email_address, uuid, function(error, result) {
                         delete user.password;
                         delete user.salt;
                         delete user.session;
@@ -79,56 +79,6 @@ let user = {
             }
         });
     }  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //create: function (request, response) {
         //users.insertNew(request, function (error, result) {
             //if (error) {
@@ -140,7 +90,6 @@ let user = {
             //}
        // });
     //}
-
 };
 
 module.exports = user;

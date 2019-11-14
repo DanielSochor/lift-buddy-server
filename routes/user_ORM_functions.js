@@ -53,7 +53,7 @@ let users = {
             table: 'users',
             //columns: ['email', 'id', 'created'],
             columns: ['email_address', 'user_id'],
-            where: [{id: id}]
+            where: [{user_id: id}]
         };
         orm.select(query, callback);
     }
