@@ -66,6 +66,7 @@ let user = {
         });
     },
     getUserBySession: function(request, response){
+        console.log('getUserBySession hit');
         users.getUserBySession(request.headers['x-session-token'], function(error, result){
             response.json(result[0]);
         });
