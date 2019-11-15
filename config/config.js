@@ -15,7 +15,8 @@
 
 //module.exports = config[process.env.APP_ENV || 'local'];
 
-module.exports = {
+let config = {
+//module.exports = {
     'development': {
         'host': process.env.DB_HOST,
         'username': process.env.DB_USER,
@@ -34,3 +35,5 @@ module.exports = {
         apiKeys: {}
     },
 }
+
+module.exports = config
