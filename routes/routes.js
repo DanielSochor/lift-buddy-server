@@ -13,17 +13,18 @@ module.exports = function (app) {
     //========Users====================================================================
 
     app.post("/api/user", function(request, response) {
+        console.log('app.post-"/api/user" hit');
         user.create(request, response);
     });
     app.post("/api/user/login", function(request, response) {
-        console.log('app.post("/api/user/login" hit');
+        console.log('app.post-"/api/user/login" hit');
         user.login(request, response);
     });
     app.delete("/api/user/login", function(request, response) {
         user.logout(request, response);
     });
     app.get("/api/user", authorizer.authenticate, function(request, response) {
-        console.log('app.get("/api/user" hit');
+        console.log('app.get-"/api/user" hit');
         user.getUserBySession(request, response);
     });
     app.get("/api/user/:id", authorizer.authenticate, function(request, response) {

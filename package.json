@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "client-start":  "npm start --prefix ../LiftBuddy-Client",
+    "client-start": "npm start --prefix ../LiftBuddy-Client",
     "dev": "concurrently \"npm start\" \"npm run client-start\""
   },
   "repository": {
@@ -23,9 +23,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "hashpass": "0.0.0",
     "if-env": "^1.0.4",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.2",
-    "per-env": "^1.0.2"
+    "per-env": "^1.0.2",
+    "uuid": "^3.3.3"
   }
 }

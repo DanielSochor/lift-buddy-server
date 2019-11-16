@@ -3,12 +3,17 @@ let connection = require('./connection');
 let orm = {
 
     select: function (query, callback) {
+        console.log('ORM select hit');
         let queryString = "SELECT ?? FROM ??";
         let searchCriteria = [query.columns || ['*'], query.table];
+        //console.log(searchCriteria);
         if (query.where) {
+            //console.log('query where');
             queryString = orm._buildWhereStatement(query, queryString, searchCriteria);
+            //console.log(queryString);
         }
         let statement = connection.query(queryString, searchCriteria, function (error, result) {
+            //console.log(searchCriteria);
             callback(error, result);
         });
         if (query.debug) {

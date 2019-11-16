@@ -1,3 +1,5 @@
+let hashpass = require('hashpass');
+let uuidv1 = require('uuid/v1');
 let users = require('./user_ORM_functions');
 
 let user = {
@@ -36,7 +38,7 @@ let user = {
         }
     },
     login: function(request, response){
-        console.log('login hit');
+        console.log('login hit in user_controller');
         users.selectByUsername(request.body.username, function(error, result){
             if (error){
                 console.log(error);

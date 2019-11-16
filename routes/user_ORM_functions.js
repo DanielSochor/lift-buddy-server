@@ -44,9 +44,11 @@ let users = {
         let query = {
             table: 'users',
             //columns: ['email', 'id', 'created'],
-            columns: ['email_address', 'user_id'],
+            //columns: ['email_address', 'user_id'],
+            columns: ['email_address', 'user_id', 'created'],
             where: [{session_token: session}]
         };
+        console.log(query); 
         orm.select(query, callback);
     },
     getUserByID: function(id, callback){
