@@ -16,6 +16,7 @@ module.exports = function (app) {
         user.create(request, response);
     });
     app.post("/api/user/login", function(request, response) {
+        console.log('app.post("/api/user/login" hit');
         user.login(request, response);
     });
     app.delete("/api/user/login", function(request, response) {

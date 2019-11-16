@@ -35,5 +35,4 @@ let config = {
         apiKeys: {}
     },
 }
-
 module.exports = config

@@ -16,7 +16,7 @@ app.use(cors());
 //  app.use(express.static('client/build'));
 // }
 
-// Add routes, both API and view
+// Add routes
 require('./routes/routes')(app);
 
 // Start the API server

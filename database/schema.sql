@@ -6,10 +6,10 @@ USE lift_buddy;
 select 'create users - begin';
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50)  NOT NULL,
+  -- `first_name` varchar(50) NOT NULL,
+  -- `last_name` varchar(50)  NOT NULL,
   `email_address` varchar(50) NOT NULL,
-  `alias` varchar(50)  NOT NULL,
+  -- `alias` varchar(50)  NOT NULL,
   `password` varchar(50)  NOT NULL,
   `salt` varchar(50)  NOT NULL,
   `session_token` varchar(50),
@@ -18,7 +18,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8MB4;
 ALTER TABLE users
-	ADD CONSTRAINT unique_alias UNIQUE KEY(`alias`);
-ALTER TABLE users
+-- 	ADD CONSTRAINT unique_alias UNIQUE KEY(`alias`);
+-- ALTER TABLE users
 	ADD CONSTRAINT unique_email UNIQUE KEY(`email_address`);
 select 'create users - end';
