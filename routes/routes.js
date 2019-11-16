@@ -4,11 +4,11 @@ var authorizer = require('./authenticate');
 
 module.exports = function (app) {
 
-    app.get('/', (request, response) => {
-        //This should show on heroku back end build
-        response.json('just the back end for me');
-        //THIS IS CURRENTLY WHAT THE BACKEND SHOWS
-    });
+    // app.get('/', (request, response) => {
+    //     //This should show on heroku back end build
+    //     response.json('just the back end for me');
+    //     //THIS IS CURRENTLY WHAT THE BACKEND SHOWS
+    // });
 
     //========Users====================================================================
 

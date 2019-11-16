@@ -40,6 +40,7 @@ let users = {
         orm.update(query, callback);
     },
     getUserBySession: function(session, callback){
+        console.log('getUserBySession in user_ORM_functions');
         let query = {
             table: 'users',
             //columns: ['email', 'id', 'created'],
