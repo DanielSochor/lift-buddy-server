@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS fitness_buddy;
-CREATE DATABASE fitness_buddy;
+DROP DATABASE IF EXISTS lift_buddy;
+CREATE DATABASE lift_buddy;
 
-USE fitness_buddy;
+USE lift_buddy;
 
 select 'create users - begin';
 CREATE TABLE `users` (
