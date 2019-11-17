@@ -40,12 +40,15 @@ let users = {
         orm.update(query, callback);
     },
     getUserBySession: function(session, callback){
+        console.log('session is')
+        console.log(session);
         console.log('getUserBySession in user_ORM_functions');
         let query = {
             table: 'users',
             //columns: ['email', 'id', 'created'],
             //columns: ['email_address', 'user_id'],
-            columns: ['email_address', 'user_id', 'created'],
+            //MAY FIXswitch user_id to username
+            columns: ['email_address', 'username', 'created'],
             where: [{session_token: session}]
         };
         console.log(query); 

@@ -30,7 +30,7 @@ let user = {
                 }else{
                     response.json({
                         id: result.insertId,
-                        email: userRequest.email_address,
+                        email_address: userRequest.email_address,
                         username: userRequest.username
                     });
                 }
@@ -38,7 +38,7 @@ let user = {
         }
     },
     login: function(request, response){
-        console.log('login hit in user_controller');
+        console.log('XXXXXlogin hit in user_controller');
         users.selectByUsername(request.body.username, function(error, result){
             if (error){
                 console.log(error);

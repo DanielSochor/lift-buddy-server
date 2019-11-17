@@ -3,6 +3,7 @@ let users = require('./user_ORM_functions');
 let authorizer = {
     authenticate: function(request, response, next){
         //console.log('authorizer authenticate hit');
+        console.log(request.headers);
         users.getUserBySession(request.headers['x-session-token'], function(error, result){
             console.log('call back reached');
             if (error){

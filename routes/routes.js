@@ -24,6 +24,8 @@ module.exports = function (app) {
         user.logout(request, response);
     });
     app.get("/api/user", authorizer.authenticate, function(request, response) {
+        console.log('request is');
+        console.log(request);
         console.log('app.get-"/api/user" hit');
         user.getUserBySession(request, response);
     });
