@@ -17,7 +17,10 @@ app.use(cors());
 // }
 
 // Add routes
-require('./routes/routes')(app);
+//require("./routes")(app);
+var userRoute = require("./controllers/users.js");
+app.use(userRoute);
+//require('./routes/routes')(app);
 
 // Start the API server
 app.listen(PORT, () =>
