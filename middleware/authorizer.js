@@ -1,4 +1,4 @@
-let users = require('../../models/users');
+let users = require('../models/users');
 
 let authorizer = {
     authenticate: function(request, response, next){

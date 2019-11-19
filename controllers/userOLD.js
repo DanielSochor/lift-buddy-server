@@ -1,44 +1,39 @@
-let hashpass = require('hashpass');
+let hashPass = require('hashPass');
 let uuidv1 = require('uuid/v1');
-let users = require('./user_ORM_functions');
+let users = require('../models/users');
 
 let user = {
-    create: function(request, response){
-        console.log(request.body);
+    create: function(request, respsonse){
         if (!request.body.email_address.includes('@') || !request.body.email_address.includes('.')){
-            response.status(400).json({'error': 'email address is not valid'});
+            respsonse.status(400).json({'error': 'email_address is not valid'});
         } else if (request.body.password !== request.body.password_confirm){
-            response.status(400).json({'error': 'passwords do not match'});
+            respsonse.status(400).json({'error': 'passwords do not match'});
         } else {
-            let hashedPassword = hashpass(request.body.password);
+            let hashedPassword = hashPass(request.body.password);
             let userRequest = {
-                //this need to be email or email_address
+                username: request.body.username,
                 email_address: request.body.email_address,
                 password: hashedPassword.hash,
-                salt: hashedPassword.salt,
-                username: request.body.username
+                salt: hashedPassword.salt
             };
-            console.log(userRequest);
             users.insertNew(userRequest, function(error, result){
                 if (error){
                     console.log(error);
                     if (error.sqlMessage.includes('Duplicate')){
-                        response.status(400).json({'error': 'email already exists in system'});
+                        respsonse.status(400).json({'error': 'email_address already exists in system'});
                     }else{
-                        response.status(500).json({'error': 'oops we did something bad'});
+                        respsonse.status(500).json({'error': 'oops we did something bad'});
                     }
                 }else{
-                    response.json({
-                        id: result.insertId,
-                        email_address: userRequest.email_address,
-                        username: userRequest.username
+                    respsonse.json({
+                        user_id: result.insertId,
+                        email_address: userRequest.email_address
                     });
                 }
             });
         }
     },
     login: function(request, response){
-        console.log('XXXXXlogin hit in user_controller');
         users.selectByUsername(request.body.username, function(error, result){
             if (error){
                 console.log(error);
@@ -47,7 +42,8 @@ let user = {
                 response.status(404).json({'error': 'user not found'});
             } else {
                 user = result[0];
-                loginAttempt = hashpass(request.body.password, user.salt);
+                console.log(user);
+                loginAttempt = hashPass(request.body.password, user.salt);
                 if (loginAttempt.hash === user.password){
                     let uuid = uuidv1();
                     users.updateSession(user.email_address, uuid, function(error, result) {
@@ -67,9 +63,8 @@ let user = {
             response.json({'message': 'user logged out successfully'});
         });
     },
-    getUserBySession: function(request, response){
-        console.log('getUserBySession hit');
-        users.getUserBySession(request.headers['x-session-token'], function(error, result){
+    getMyself: function(request, response){
+        users.getMyself(request.headers['x-session-token'], function(error, result){
             response.json(result[0]);
         });
     },
@@ -81,18 +76,7 @@ let user = {
                 response.status(404).json({'error': 'user not found'});
             }
         });
-    }  
-    //create: function (request, response) {
-        //users.insertNew(request, function (error, result) {
-            //if (error) {
-                //console.log(error);
-            //} else {
-                //response.json({
-                    //email: request.email_address,
-                //});
-            //}
-       // });
-    //}
+    }
 };
 
 module.exports = user;
