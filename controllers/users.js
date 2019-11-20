@@ -5,6 +5,9 @@ const user = require('../models/user.js');
 
 let router = express.Router();
 
+router.get("/api/users/signup", (req, res) => {
+});
+
 // GET route for fetching one user by session token header or
 // all users by default
 router.get("/api/users", (req, res) => {
