@@ -5,6 +5,10 @@ const user = require('../models/user.js');
 
 let router = express.Router();
 
+router.get("/", (req, res) => {
+    console.log('welcome to the server side');
+});
+
 router.get("/api/users/signup", (req, res) => {
 });
 
