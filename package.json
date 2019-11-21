@@ -1,5 +1,5 @@
 {
-  "name": "liftbuddy-server",
+  "name": "lift-buddy-server",
   "version": "1.0.0",
   "description": "server for liftbuddy",
   "main": "server.js",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanielSochor/LiftBuddy-Server.git"
+    "url": "git+https://github.com/DanielSochor/lift-buddy-server.git"
   },
   "author": "daniel-sochor",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DanielSochor/LiftBuddy-Server/issues"
+    "url": "https://github.com/DanielSochor/lift-buddy-server/issues"
   },
   "dependencies": {
     "concurrently": "^4.1.2",
