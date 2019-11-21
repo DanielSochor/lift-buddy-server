@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "client-start": "npm start --prefix ../LiftBuddy-Client",
+    "client": "../LiftBuddy-Client",
+    "client-start": "npm start --prefix client",
     "dev": "concurrently \"npm start\" \"npm run client-start\""
   },
   "repository": {
