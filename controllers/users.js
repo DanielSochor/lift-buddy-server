@@ -10,6 +10,8 @@ router.get('/', (req, res) => {
 });
 
 router.get("/api/users/signup", (req, res) => {
+    response.json('api/users/signin hit');
+    console.log('api/users/signin hit');
 });
 
 // GET route for fetching one user by session token header or
