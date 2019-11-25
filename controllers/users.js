@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     response.json('just the back end for me');
 });
 
-router.get("/api/users/signup", (req, res) => {
+router.get('/api/users/signup', (req, res) => {
     response.json('api/users/signin hit');
     console.log('api/users/signin hit');
 });
