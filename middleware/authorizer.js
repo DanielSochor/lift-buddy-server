@@ -2,6 +2,8 @@ let users = require('../models/users');
 
 let authorizer = {
     authenticate: function(request, response, next){
+        console.log('authenticate request in server is: ');
+        console.log(request);
         users.getMyself(request.headers['x-session-token'], function(error, result){
             if (error){
                 console.log(error);
