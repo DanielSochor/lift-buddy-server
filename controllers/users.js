@@ -5,27 +5,27 @@ const user = require('../models/user.js');
 
 let router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (request, response) => {
     response.json('just the back end for me');
 });
 
-router.get('/api/users/signup', (req, res) => {
+router.get('/api/users/signup', (request, response) => {
     response.json('api/users/signin hit');
     console.log('api/users/signin hit');
 });
 
 // GET route for fetching one user by session token header or
 // all users by default
-router.get("/api/users", (req, res) => {
+router.get("/api/users", (request, res) => {
     console.log('list all users');
 
-    if (req.headers['x-session-token']) {
+    if (request.headers['x-session-token']) {
         console.log('cha cha cha');
-        user.selectWhere({ session_token: req.headers['x-session-token'] }, (err, result) => {
+        user.selectWhere({ session_token: req.headers['x-session-token'] }, (error, result) => {
             if (result.length) {
-                res.status(200).json({ data: result });
+                response.status(200).json({ data: result });
             } else {
-             res.status(404).json({ 'error': 'user not found' });
+             response.status(404).json({ 'error': 'user not found' });
             }
         })
     } else {
@@ -58,47 +58,47 @@ router.get("/api/users", (req, res) => {
 });
 
 // GET route for fetching one user by ID
-router.get("/api/users/:id", (req, res) => {
+router.get("/api/users/:id", (request, response) => {
     console.log('retrieve user');
 
-    user.selectWhere({ user_id: req.params.id }, (err, result) => {
+    user.selectWhere({ user_id: request.params.id }, (err, result) => {
         if (result.length) {
-            res.status(200).json(result[0]);
+            response.status(200).json(result[0]);
         } else {
-            res.status(404).json({ 'error': 'user not found' });
+            response.status(404).json({ 'error': 'user not found' });
         }
     })
 });
 
 // POST route for creating a user
-router.post("/api/users", (req, res) => {
-    if (!req.body.email_address.includes('@') || !req.body.email_address.includes('.')) {
-        res.status(400).json({ 'error': 'email is not valid' });
-    } else if (req.body.password !== req.body.password_confirm) {
-        res.status(400).json({ 'error': 'passwords do not match' });
+router.post("/api/users", (request, response) => {
+    if (!request.body.email_address.includes('@') || !request.body.email_address.includes('.')) {
+        response.status(400).json({ 'error': 'email is not valid' });
+    } else if (request.body.password !== request.body.password_confirm) {
+        response.status(400).json({ 'error': 'passwords do not match' });
     } else {
-        let hashedPassword = hashpass(req.body.password);
+        let hashedPassword = hashpass(request.body.password);
         let userRequest = {
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            email_address: req.body.email_address,
-            username: req.body.username,
+            first_name: request.body.first_name,
+            last_name: request.body.last_name,
+            email_address: request.body.email_address,
+            username: request.body.username,
             // alias: req.body.alias,
             password: hashedPassword.hash,
             salt: hashedPassword.salt
         };
         console.log('userRequest for post at api/users is: ');
         console.log(userRequest);
-        user.createUser(userRequest, (err, result) => {
-            if (err) {
-                console.log(err);
-                if (err.sqlMessage.includes('Duplicate')) {
-                    res.status(400).json({ 'error': 'email already exists in system' });
+        user.createUser(userRequest, (error, result) => {
+            if (error) {
+                console.log(error);
+                if (error.sqlMessage.includes('Duplicate')) {
+                    response.status(400).json({ 'error': 'email already exists in system' });
                 } else {
-                    res.status(500).json({ 'error': 'oops we did something bad' });
+                    response.status(500).json({ 'error': 'oops we did something bad' });
                 }
             } else {
-                res.status(200).json({
+                response.status(200).json({
                     user_id: result.insertId,
                     ///username: result.userame,
                     email: userRequest.email_address
@@ -111,28 +111,28 @@ router.post("/api/users", (req, res) => {
 });
 
 // POST route for user log in
-router.post('/api/users/login', (req, res) => {
+router.post('/api/users/login', (request, response) => {
     //user can sign in with email or username
     console.log('req first item is: ');
-    console.log(req[0]);
+    console.log(request[0]);
     console.log('res first item is: ');
-    console.log(res[0]);
+    console.log(response[0]);
     if (req.body.email_address === undefined) {
-        user.selectWhere(req.body.username, (err, result) => {
-            handleLogin(req, res, err, result);
+        user.selectWhere(request.body.username, (error, result) => {
+            handleLogin(request, response, error, result);
         });
     }
     else {
-        user.selectByEmail(req.body.email_address, (err, result) => {
-            handleLogin(req, res, err, result);
+        user.selectByEmail(request.body.email_address, (error, result) => {
+            handleLogin(request, response, error, result);
         });
     }
 });
 
 // POST route for user log out
-router.delete('/api/users/login', (req, res) => {
-    user.update({ session_token: req.headers['x-session-token'] }, (err, result) => {
-        res.status(200).json({ 'message': 'user logged out successfully' });
+router.delete('/api/users/login', (request, response) => {
+    user.update({ session_token: request.headers['x-session-token'] }, (error, result) => {
+        response.status(200).json({ 'message': 'user logged out successfully' });
     });
 });
 
