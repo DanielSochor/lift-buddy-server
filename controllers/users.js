@@ -117,7 +117,7 @@ router.post('/api/users/login', (request, response) => {
     console.log(request[0]);
     console.log('res first item is: ');
     console.log(response[0]);
-    if (req.body.email_address === undefined) {
+    if (request.body.email_address === undefined) {
         user.selectWhere(request.body.username, (error, result) => {
             handleLogin(request, response, error, result);
         });
@@ -132,19 +132,19 @@ router.post('/api/users/login', (request, response) => {
 // POST route for user log out
 router.delete('/api/users/login', (request, response) => {
     user.update({ session_token: request.headers['x-session-token'] }, (error, result) => {
-        response.status(200).json({ 'message': 'user logged out successfully' });
+        result.status(200).json({ 'message': 'user logged out successfully' });
     });
 });
 
 // Update the user from the SELECT query with a session_token
-let handleLogin = (req, res, err, result) => {
-    if (err) {
+let handleLogin = (request, response, error, result) => {
+    if (error) {
         console.log('A');
-        console.log(err);
-        res.status(500).json({ 'error': 'oops we did something bad' });
+        console.log(error);
+        response.status(500).json({ 'error': 'oops we did something bad' });
     } else if (!result.length) {
         console.log('B');
-        res.status(404).json({ 'error': 'user not found' });
+        response.status(404).json({ 'error': 'user not found' });
     } else {
         console.log('C');
         console.log('result is: ');
@@ -152,17 +152,17 @@ let handleLogin = (req, res, err, result) => {
         //here is the problem the session is null
         let userResult = result[0];
         console.log(result[0]);
-        loginAttempt = hashpass(req.body.password, userResult.salt);
+        loginAttempt = hashpass(request.body.password, userResult.salt);
         if (loginAttempt.hash === userResult.password) {
             let uuid = uuidv1();
             user.updateSession(userResult.email_address, uuid, (error, queryResult) => {
                 delete userResult.password;
                 delete userResult.salt;
                 delete userResult.session_token;
-                res.header('x-session-token', uuid).status(200).json(userResult);
+                response.header('x-session-token', uuid).status(200).json(userResult);
             });
         } else {
-            res.status(401).json({ 'error': 'improper login credentials' });
+            response.status(401).json({ 'error': 'improper login credentials' });
         }
     }
 };
