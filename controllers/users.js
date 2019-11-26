@@ -22,6 +22,8 @@ router.get("/api/users", (request, response) => {
     if (request.headers['x-session-token']) {
         console.log('cha cha cha');
         user.selectWhere({ session_token: request.headers['x-session-token'] }, (error, result) => {
+            console.log('request headers in user.select where in users.js is: ');
+            console.log(request.headers);
             if (result.length) {
                 response.status(200).json({ data: result });
             } else {
