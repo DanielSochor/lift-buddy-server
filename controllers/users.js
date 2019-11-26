@@ -16,12 +16,12 @@ router.get('/api/users/signup', (request, response) => {
 
 // GET route for fetching one user by session token header or
 // all users by default
-router.get("/api/users", (request, res) => {
+router.get("/api/users", (request, response) => {
     console.log('list all users');
 
     if (request.headers['x-session-token']) {
         console.log('cha cha cha');
-        user.selectWhere({ session_token: req.headers['x-session-token'] }, (error, result) => {
+        user.selectWhere({ session_token: request.headers['x-session-token'] }, (error, result) => {
             if (result.length) {
                 response.status(200).json({ data: result });
             } else {
