@@ -1,4 +1,4 @@
-let connection = require('./connection');
+let connection = require('./db_connection');
 
 let orm = {
     createTable: function (name, properties, retry = 0) {

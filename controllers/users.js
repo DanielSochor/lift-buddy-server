@@ -5,9 +5,55 @@ const user = require('../models/user.js');
 
 let router = express.Router();
 
-router.get('/', (request, response) => {
-    response.json('just the back end for me');
+// router.get('/', (request, response) => {
+//     response.json('just the back end for me');
+// });
+
+//routes
+
+//GET route for fetching one user with all data by session token
+
+//POST route for creating new user sign up
+
+//POST route for user login
+
+//POST route for user logout
+
+//functions
+
+//handle login - 
+
+
+router.get('/api/user', (request, response) => {
+
 });
+
+router.post('/api/user/signup', (request, response) => {
+
+});
+
+router.post('/api/user/login', (request, response) => {
+
+});
+
+router.post('/api/user/logout', (request, response) => {
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/api/users/signup', (request, response) => {
     response.json('api/users/signin hit');

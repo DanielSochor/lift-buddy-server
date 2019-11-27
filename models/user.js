@@ -1,125 +1,80 @@
-const orm = require("../config/orm.js");
+let hashPass = require('hashPass');
+let uuidv1 = require('uuid/v1');
+let users = require('../models/users');
 
-let users = {
-    select: cb => {
-        let query = {
-            columns: [
-                'user_id',
-                'first_name',
-                'last_name',
-                'username',
-                'email_address',
-                'session_token',
-                'created',
-                'updated'],
-            table: 'users',
-        };
-        orm.select(query, cb);
+let user = {
+    create: function(request, response){
+        if (!request.body.email.includes('@') || !request.body.email.includes('.')){
+            response.status(400).json({'error': 'email is not valid'});
+        } else if (request.body.password !== request.body.password_confirm){
+            response.status(400).json({'error': 'passwords do not match'});
+        } else {
+            let hashedPassword = hashPass(request.body.password);
+            let userRequest = {
+                email: request.body.email,
+                password: hashedPassword.hash,
+                salt: hashedPassword.salt
+            };
+            users.insertNew(userRequest, function(error, result){
+                if (error){
+                    console.log(error);
+                    if (error.sqlMessage.includes('Duplicate')){
+                        response.status(400).json({'error': 'email already exists in system'});
+                    }else{
+                        response.status(500).json({'error': 'oops we did something bad'});
+                    }
+                }else{
+                    response.json({
+                        user_id: result.insertId,
+                        email: userRequest.email
+                    });
+                }
+            });
+        }
     },
-    selectJoin: (cb) => {
-        let queryString = `SELECT * FROM users 
-                            JOIN messages
-                                ON messages.user_id = users.user_id WHERE users.user_id = ? `;
-        let queryArray = 1;//[user.user_id]; //has to be a primitive value
-        orm.query(queryString, queryArray, function (error, data) {
-            console.log(data);
+    login: function(request, response){
+        users.selectByEmail(request.body.email, function(error, result){
+            if (error){
+                console.log(error);
+                response.status(500).json({'error': 'oops we did something bad'});
+            } else if(!result.length) {
+                response.status(404).json({'error': 'user not found'});
+            } else {
+                user = result[0];
+                loginAttempt = hashPass(request.body.password, user.salt);
+                if (loginAttempt.hash === user.password){
+                    let uuid = uuidv1();
+                    users.updateSession(user.email, uuid, function(error, result) {
+                        delete user.password;
+                        delete user.salt;
+                        delete user.session;
+                        response.header('x-session-token', uuid).json(user);
+                    });
+                }else{
+                    response.status(401).json({'error': 'improper login credentials'});
+                }
+            }
         });
     },
-    selectWhere: (where, cb) => {
-        let query = {
-            columns: [
-                'user_id',
-                'first_name',
-                'last_name',
-                'username',
-                'email_address',
-                'session_token',
-                'created',
-                'updated'],
-            table: 'users',
-            where: [where]
-        };
-        orm.select(query, cb);
+    logout: function(request, response){
+        users.removeSession(request.headers['x-session-token'], function(error, result){
+            response.json({'message': 'user logged out successfully'});
+        });
     },
-    createUser: (userObj, cb) => {
-        let query = {
-            table: 'users',
-            data: userObj //ensure the keys of the object match the table columns
-        };
-        console.log('query is');
-        console.log(query);
-        orm.insert(query, cb);
+    getMyself: function(request, response){
+        users.getMyself(request.headers['x-session-token'], function(error, result){
+            response.json(result[0]);
+        });
     },
-    deleteUser: (user_id, cb) => {
-        let query = {
-            table: 'users',
-            where: [{ user_id: user_id }]
-        };
-        orm.delete(query, cb);
-    },
-    selectByEmail: (email, cb) => {
-        let query = {
-            table: 'users',
-            where: [{ email_address: email.toLowerCase() }]
-        };
-        orm.select(query, cb);
-    },
-    updateSession: (email, uuid, cb) => {
-        let query = {
-            table: 'users',
-            data: { session_token: uuid },
-            where: [{ email_address: email.toLowerCase() }]
-        };
-        orm.update(query, cb);
-    },
-    update: (where, cb) => {
-        let query = {
-            table: 'users',
-            data: { session_token: null },
-            where: [where],
-            debug: true
-        };
-        orm.update(query, cb);
-    },
-    selectUsersJoinChannels: (where, params, cb) => {
-        let query = {
-            string: 'SELECT ?? FROM users LEFT JOIN channel_user ON channel_user.user_id = users.user_id LEFT JOIN channels ON channels.channel_id = channel_user.channel_id WHERE ?',
-            columns: [
-                'users.user_id',
-                'users.first_name',
-                'users.last_name',
-                'users.email_address',
-                // 'users.alias',
-                'users.session_token',
-                'users.created',
-                'users.updated',
-                // 'channels.channel_id',
-                // 'channels.channel_name'
-            ],
-            where: [where],
-        };
-        orm.selectJoinWhere(query, params, cb);
-    },
-    selectUsersJoinGroups: (where, params, cb) => {
-        let query = {
-            string: 'SELECT ?? FROM users JOIN direct_group_user ON direct_group_user.user_id = users.user_id JOIN direct_groups ON direct_groups.direct_group_id = direct_group_user.direct_group_id WHERE ?',
-            columns: [
-                'users.user_id',
-                'users.first_name',
-                'users.last_name',
-                'users.username',
-                'users.email_address',
-                // 'users.alias',
-                'users.session_token',
-                'users.created',
-                'users.updated',
-                // 'direct_groups.direct_group_id'
-            ],
-            where: [where],
-        };
-        orm.selectJoinWhere(query, params, cb);
+    getUserByID: function(request, response){
+        users.getUserByID(request.params.id, function(error, result){
+            if (result.length){
+                response.json(result[0]);
+            } else {
+                response.status(404).json({'error': 'user not found'});
+            }
+        });
     }
 };
 
-// Export the database functions for the controller (catsController.js).
-module.exports = users;
+module.exports = user;
