@@ -24,6 +24,7 @@ let router = express.Router();
 //handle login - 
 
 router.get('/api/user', (request, response) => {
+    console.log('api/user hit in users.js');
     user.selectWhere({ session_token: request.headers['x-session-token'] }, (error, result) => {
         if (result.length) {
             response.status(200).json(result[0]);
