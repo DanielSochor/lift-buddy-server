@@ -35,6 +35,7 @@ router.get('/api/user', (request, response) => {
 });
 
 router.post('/api/user/signup', (request, response) => {
+    console.log('api/user/signup hit in users.js');
     if (!request.body.email_address.includes('@') || !request.body.email_address.includes('.')) {
         response.status(400).json({ 'error': 'email is not valid' });
     } else if (request.body.password !== request.body.password_confirm) {
