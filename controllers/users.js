@@ -93,6 +93,7 @@ router.post('/api/user/logout', (request, response) => {
 });
 
 let handleLogIn = (request, response, error, result) => {
+    //console.log
     if (error) {
         console.log('A');
         console.log(error);
@@ -103,15 +104,17 @@ let handleLogIn = (request, response, error, result) => {
     } else {
         console.log('C');
         let userResult = result[0];
+        console.log('user request in handle log in is: ');
+        console.log(userResult)
         loginAttempt = hashpass(request.body.password, userResult.salt);
         if (loginAttempt.hash === userResult.password) {
             let uuid = uuidv1();
-            user.updateSession(userResult.email_address, uuid, (error, queryResult) => {
+            user.updateSession(userResult.username, uuid, (error, queryResult) => {
                 delete userResult.password;
                 delete userResult.salt;
                 delete userResult.session_token;
-                //response.header('x-session-token', uuid).status(200).json(userResult);
-                response.header('x-session-token').json(userResult);
+                response.header('x-session-token', uuid).status(200).json(userResult);
+                //response.header('x-session-token').json(userResult);
             });
         } else {
             response.status(401).json({ 'error': 'improper login credentials' });
