@@ -61,7 +61,7 @@ router.post('/api/user/signup', (request, response) => {
             } else {
                 response.status(200).json({
                     user_id: result.insertId,
-                    email: userRequest.email_address
+                    password: userRequest.password
                 });
             }
         });
@@ -71,13 +71,15 @@ router.post('/api/user/signup', (request, response) => {
 router.post('/api/user/login', (request, response) => {
     console.log('request body is: ');
     console.log(request.body);
+
+
     if (request.body.email_address === undefined) {
         console.log('request username is: ');
         console.log(request.body.username);
-        user.selectWhere(request.body.username, (error, result) => {
+        user.selectByUserName(request.body.username, (error, result) => {
             //console.log('result is: ');
             //console.log(result);
-            //handleLogIn(request, response, error, result);
+            handleLogIn(request, response, error, result);
         });
     }
     else {
