@@ -60,8 +60,8 @@ let orm = {
         console.log('incoming query is: ');
         console.log(query);
         let queryString = "SELECT ?? FROM ??";
-        //let searchCriteria = [query.columns || ['*'], query.table];
-        let searchCriteria =  [ [ '*' ], 'users', { username: 'a' } ];
+        let searchCriteria = [query.columns || ['*'], query.table];
+        //let searchCriteria =  [ [ '*' ], 'users', { username: 'a' } ];
         if (query.where) {
             queryString = orm._buildWhereStatement(query, queryString, searchCriteria);
         }
