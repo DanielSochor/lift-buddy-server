@@ -71,14 +71,11 @@ router.post('/api/user/signup', (request, response) => {
 router.post('/api/user/login', (request, response) => {
     console.log('request body is: ');
     console.log(request.body);
-
-
+    //TODO: refactor this; we don't need to check email in request as it'll always be undefined
     if (request.body.email_address === undefined) {
         console.log('request username is: ');
         console.log(request.body.username);
         user.selectByUserName(request.body.username, (error, result) => {
-            //console.log('result is: ');
-            //console.log(result);
             handleLogIn(request, response, error, result);
         });
     }
