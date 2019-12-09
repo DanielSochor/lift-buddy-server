@@ -71,11 +71,12 @@ let users = {
         };
         orm.select(query, cb);
     },
-    updateSession: (email, uuid, cb) => {
+    updateSession: (username, uuid, cb) => {
         let query = {
             table: 'users',
             data: { session_token: uuid },
-            where: [{ email_address: email.toLowerCase() }]
+            //where: [{ email_address: email.toLowerCase() }]
+            where: [{ username: username.toLowerCase() }]
         };
         orm.update(query, cb);
     },
