@@ -69,14 +69,20 @@ router.post('/api/user/signup', (request, response) => {
 });
 
 router.post('/api/user/login', (request, response) => {
+    console.log('request body is: ');
+    console.log(request.body);
     if (request.body.email_address === undefined) {
+        console.log('request username is: ');
+        console.log(request.body.username);
         user.selectWhere(request.body.username, (error, result) => {
-            handleLogin(request, response, error, result);
+            //console.log('result is: ');
+            //console.log(result);
+            //handleLogIn(request, response, error, result);
         });
     }
     else {
         user.selectByEmail(request.body.email_address, (error, result) => {
-            handleLogin(request, response, error, result);
+            handleLogIn(request, response, error, result);
         });
     }
 });
@@ -87,13 +93,16 @@ router.post('/api/user/logout', (request, response) => {
     });
 });
 
-let handleLogin = (request, response, error, result) => {
+let handleLogIn = (request, response, error, result) => {
     if (error) {
+        console.log('A');
         console.log(error);
         response.status(500).json({ 'error': 'oops we did something wrong' });
     } else if (!result.length) {
+        console.log('B');
         response.status(404).json({ 'error': 'user not found' });
     } else {
+        console.log('C');
         let userResult = result[0];
         loginAttempt = hashpass(request.body.password, userResult.salt);
         if (loginAttempt.hash === userResult.password) {
