@@ -62,6 +62,13 @@ let users = {
             table: 'users',
             where: [{ email_address: email.toLowerCase() }]
         };
+        orm.select(query, cb);  
+    },
+    selectByUserName: (username, cb) => {
+        let query = {
+            table: 'users',
+            where: [{ username: username.toLowerCase() }]
+        };
         orm.select(query, cb);
     },
     updateSession: (email, uuid, cb) => {
