@@ -57,14 +57,26 @@ let orm = {
         return query;
     },
     select: function (query, callback) {
+        console.log('incoming query is: ');
+        console.log(query);
         let queryString = "SELECT ?? FROM ??";
-        let searchCriteria = [query.columns || ['*'], query.table];
+        //let searchCriteria = [query.columns || ['*'], query.table];
+        let searchCriteria =  [ [ '*' ], 'users', { username: 'a' } ];
         if (query.where) {
             queryString = orm._buildWhereStatement(query, queryString, searchCriteria);
         }
+        //searchCriteria = { username: 'a'};
         let statement = connection.query(queryString, searchCriteria, function (error, result) {
+            console.log('query string is: ');
+            console.log(queryString);
+            console.log('searchCriteria is: ');
+            console.log(searchCriteria);
+            console.log('result is: ');
+            console.log(result);
             callback(error, result);
         });
+        //console.log('statement is: ');
+        //console.log(statement);
         if (query.debug) {
             console.log(statement.sql);
         }
