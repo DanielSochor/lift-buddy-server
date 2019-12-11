@@ -107,14 +107,39 @@ let handleLogIn = (request, response, error, result) => {
         console.log('user request in handle log in is: ');
         console.log(userResult)
         loginAttempt = hashpass(request.body.password, userResult.salt);
+        console.log('loginAttempt is');
+        console.log(loginAttempt);
+        console.log('loginAttempt.hash is');
+        console.log(loginAttempt.hash);
+        console.log('userResult.password is');
+        console.log(userResult.password);
         if (loginAttempt.hash === userResult.password) {
             let uuid = uuidv1();
+            console.log('uuid is: ');
+            console.log(uuid);
+            console.log('userResult.username is: ');
+            console.log(userResult.username);
+            console.log('userResult.session_token is: ');
+            console.log(userResult.session_token);
             user.updateSession(userResult.username, uuid, (error, queryResult) => {
                 delete userResult.password;
                 delete userResult.salt;
-                delete userResult.session_token;
-                response.header('x-session-token', uuid).status(200).json(userResult);
+                //delete userResult.session_token;
+
+                console.log('response.header(x-session-token, uuid) ');
+                console.log(response.header('x-session-token', uuid));
+                //response.setHeader('Access-Control-Allow-Credentials',true);
+                //response.header('x-session-token', uuid, {'access-control-allow-origin':'http://localhost:3000'},{'Access-Control-Allow-Credentials': true}).status(200).json(userResult);
+                response.header('x-session-token', uuid);
+                response.header('access-control-allow-credentials',true);
+                response.header('Access-Control-Allow-Origin', 'http://localhost:3000').status(200).json(userResult);
+                //withCredentials:true
                 //response.header('x-session-token').json(userResult);
+
+                //console.log('response.headers are: ');
+                //console.log(response.headers);
+                //console.log('XXX response.body is: ');
+                //console.log(response.body);
             });
         } else {
             response.status(401).json({ 'error': 'improper login credentials' });
