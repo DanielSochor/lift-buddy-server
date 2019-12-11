@@ -9,7 +9,9 @@ const PORT = process.env.PORT || 3001;
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
+//app.use(cors({credentials: true}));
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
