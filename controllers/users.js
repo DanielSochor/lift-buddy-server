@@ -131,8 +131,12 @@ let handleLogIn = (request, response, error, result) => {
                 //response.setHeader('Access-Control-Allow-Credentials',true);
                 //response.header('x-session-token', uuid, {'access-control-allow-origin':'http://localhost:3000'},{'Access-Control-Allow-Credentials': true}).status(200).json(userResult);
                 response.header('x-session-token', uuid);
-                response.header('access-control-allow-credentials',true);
-                response.header('Access-Control-Allow-Origin', 'http://localhost:3000').status(200).json(userResult);
+                //response.header({withCredentials:true});
+                response.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+                response.header('Access-Control-Allow-Credentials',true);
+                response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+                //response.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+                response.header('Vary','Origin').status(200).json(userResult);
                 //withCredentials:true
                 //response.header('x-session-token').json(userResult);
 
