@@ -6,6 +6,9 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const baseURL = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_SERVER_URL : process.env.REACT_APP_LOCAL_URL;
+//TODO: create an origin whitelist with both URLS
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
