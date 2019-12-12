@@ -23,6 +23,12 @@ let router = express.Router();
 
 //handle login - 
 
+//router.use(function(req, res, next) {
+  //  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    //next();
+ // });
+
 router.get('/api/user', (request, response) => {
     console.log('api/user hit in users.js');
     user.selectWhere({ session_token: request.headers['x-session-token'] }, (error, result) => {
@@ -128,15 +134,18 @@ let handleLogIn = (request, response, error, result) => {
 
                 console.log('response.header(x-session-token, uuid) ');
                 console.log(response.header('x-session-token', uuid));
-                //response.setHeader('Access-Control-Allow-Credentials',true);
+                //response.header('Access-Control-Allow-Credentials',true);
                 //response.header('x-session-token', uuid, {'access-control-allow-origin':'http://localhost:3000'},{'Access-Control-Allow-Credentials': true}).status(200).json(userResult);
                 response.header('x-session-token', uuid);
-                response.header('session-token', uuid);
+                //response.header('session-token', uuid);
                 //response.header({withCredentials:true});
-                //APPEARS TO BE UNNEEDED response.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-                //response.header('Access-Control-Allow-Credentials',true);
-                //APPEARS RO BE UNNEEDED response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-                //APPEARS TO BE UNNEEDED response.header('Vary','Origin');
+                response.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+                response.header('Access-Control-Allow-Credentials', true);
+                response.header('Access-Control-Allow-Method', this.get, this.post, this.options);
+                //response.header('Access-Control-Allow-Headers', 'x-session-token', 'Content-Type');
+                response.header('Access-Control-Allow-Headers', 'Origin, x-session-token, Content-Type, Accept, Authorization');
+                //APPEARS TO BE UNNEEDED response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+                response.header('Vary','Origin');
                 response.header().status(200).json(userResult);
                 //withCredentials:true
                 //response.header('x-session-token').json(userResult);
