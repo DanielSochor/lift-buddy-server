@@ -136,12 +136,23 @@ let handleLogIn = (request, response, error, result) => {
                 console.log(response.header('x-session-token', uuid));
 
                 response.setHeader('Access-Control-Allow-Credentials', true);
-                response.setHeader('X-PINGOTHER', 'Content-Type');
+                response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
                 response.setHeader('Access-Control-Allow-Method', 'get', 'post', 'options');
                 response.setHeader('Access-Control-Allow-Origin', request.get('Origin'));
+                response.setHeader('Access-Control-Max-Age','86400')
+                response.setHeader('Access-Control-Expose-Headers', 'Access-Control-Allow-Origin');
+                response.setHeader('Access-Control-Expose-Headers', 'x-session-token');
+
                 console.log('Origin is: ');
                 console.log(request.get('Origin'));
-
+                console.log('Access-Control-Request-Headers is: ');
+                console.log(request.get('Access-Control-Request-Headers'));
+                console.log('Access-Control-Request-Origin is: ');
+                console.log(request.get('Access-Control-Request-Origin'));
+                console.log('Access-Control-Request-Method is: ');
+                console.log(request.get('Access-Control-Request-Method'));
+                console.log('Access-Control-Request-Credentials is: ');
+                console.log(request.get('Access-Control-Request-Credentials'));
 
                 //response.header('Access-Control-Allow-Credentials',true);
                 //response.header('x-session-token', uuid, {'access-control-allow-origin':'http://localhost:3000'},{'Access-Control-Allow-Credentials': true}).status(200).json(userResult);
