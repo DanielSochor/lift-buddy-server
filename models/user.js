@@ -78,6 +78,8 @@ let users = {
             //where: [{ email_address: email.toLowerCase() }]
             where: [{ username: username.toLowerCase() }]
         };
+        console.log('query is: ');
+        console.log(query);
         orm.update(query, cb);
     },
     update: (where, cb) => {
