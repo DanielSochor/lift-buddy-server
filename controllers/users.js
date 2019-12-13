@@ -143,36 +143,13 @@ let handleLogIn = (request, response, error, result) => {
                 response.setHeader('Access-Control-Expose-Headers', 'Access-Control-Allow-Origin');
                 response.setHeader('Access-Control-Expose-Headers', 'x-session-token');
 
-                console.log('Origin is: ');
-                console.log(request.get('Origin'));
-                console.log('Access-Control-Request-Headers is: ');
-                console.log(request.get('Access-Control-Request-Headers'));
-                console.log('Access-Control-Request-Origin is: ');
-                console.log(request.get('Access-Control-Request-Origin'));
-                console.log('Access-Control-Request-Method is: ');
-                console.log(request.get('Access-Control-Request-Method'));
-                console.log('Access-Control-Request-Credentials is: ');
-                console.log(request.get('Access-Control-Request-Credentials'));
-
-                //response.header('Access-Control-Allow-Credentials',true);
-                //response.header('x-session-token', uuid, {'access-control-allow-origin':'http://localhost:3000'},{'Access-Control-Allow-Credentials': true}).status(200).json(userResult);
                 response.header('x-session-token', uuid);
-                //response.header('session-token', uuid);
-                //response.header({withCredentials:true});
 
-                
-                //response.header('Access-Control-Allow-Headers', 'x-session-token', 'Content-Type');
                 response.header('Access-Control-Allow-Headers', 'Origin, x-session-token, Content-Type, Accept, Authorization');
-                //APPEARS TO BE UNNEEDED response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
                 response.setHeader('Vary','Origin');
                 response.header().status(200).json(userResult);
-                //withCredentials:true
-                //response.header('x-session-token').json(userResult);
 
-                //console.log('response.headers are: ');
-                //console.log(response.headers);
-                //console.log('XXX response.body is: ');
-                //console.log(response.body);
             });
         } else {
             response.status(401).json({ 'error': 'improper login credentials' });
