@@ -13,24 +13,32 @@ const baseURL = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_
 //TODO: doesn't like http://localhost:3001, may not like the lift-buddy-server
 var whitelist = ['http://localhost:3000', 'https://lift-buddy-server.herokuapp.com']
 
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions = {
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
+    //credentials:true
   }
+  callback(null, corsOptions);
 }
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.use(cors());
-//app.use(cors({credentials: true}));
-//app.use(cors({origin: 'http://localhost:3000'}));
-app.use(cors(corsOptions));
-//app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+
+//this should enable CORS preflight
+app.use(cors({
+  credentials: true, 
+  exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
+  methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
+  optionsSuccessStatus: 204,
+  origin: 'http://localhost:3000'
+}));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
