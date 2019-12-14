@@ -3,11 +3,12 @@ CREATE DATABASE lift_buddy;
 
 USE lift_buddy;
 
+drop table users;
 select 'create users - begin';
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  -- `first_name` varchar(50) NOT NULL,
-  -- `last_name` varchar(50)  NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50)  NOT NULL,
   `username` varchar(50) NOT NULL UNIQUE,
   `email_address` varchar(50) NOT NULL,
   -- `alias` varchar(50)  NOT NULL,
