@@ -136,7 +136,7 @@ let handleLogIn = (request, response, error, result) => {
                 console.log(response.header('x-session-token', uuid));
 
                 response.setHeader('Access-Control-Allow-Credentials', true);
-                response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+                //response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
                 response.setHeader('Access-Control-Allow-Method', 'get', 'post', 'options');
                 //-response.setHeader('Access-Control-Allow-Origin', request.get('Origin'));
                 //-response.setHeader('Access-Control-Max-Age','86400')
