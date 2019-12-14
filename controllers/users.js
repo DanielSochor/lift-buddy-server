@@ -131,23 +131,9 @@ let handleLogIn = (request, response, error, result) => {
                 delete userResult.password;
                 delete userResult.salt;
                 //delete userResult.session_token;
-
                 console.log('response.header(x-session-token, uuid) ');
                 console.log(response.header('x-session-token', uuid));
-
-                //-response.setHeader('Access-Control-Allow-Credentials', true);
-                //-response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-                //-response.setHeader('Access-Control-Allow-Method', 'get', 'post', 'options');
-                //-response.setHeader('Access-Control-Allow-Origin', request.get('Origin'));
-                //-response.setHeader('Access-Control-Max-Age','86400')
-                //-response.setHeader('Access-Control-Expose-Headers', 'Access-Control-Allow-Origin');
-                //-response.setHeader('Access-Control-Expose-Headers', 'x-session-token');
-
                 response.header('x-session-token', uuid).status(200).json(userResult);
-
-                //-response.header('Access-Control-Allow-Headers', 'Origin, x-session-token, Content-Type, Accept, Authorization');
-
-                //response.setHeader('Vary','Origin');
             });
         } else {
             response.status(401).json({ 'error': 'improper login credentials' });
