@@ -35,8 +35,8 @@ app.use(express.json());
 app.use(cors({
   credentials: true, 
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
-  methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
-  optionsSuccessStatus: 204,
+  //methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
+  //optionsSuccessStatus: 204,
   origin: 'http://localhost:3000'
 }));
 
