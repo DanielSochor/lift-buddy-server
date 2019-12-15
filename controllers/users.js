@@ -99,7 +99,6 @@ router.post('/api/user/logout', (request, response) => {
 });
 
 let handleLogIn = (request, response, error, result) => {
-    //console.log
     if (error) {
         console.log('A');
         console.log(error);
@@ -131,8 +130,8 @@ let handleLogIn = (request, response, error, result) => {
                 delete userResult.password;
                 delete userResult.salt;
                 //delete userResult.session_token;
-                console.log('response.header(x-session-token, uuid) ');
-                console.log(response.header('x-session-token', uuid));
+                //console.log('response.header(x-session-token, uuid) ');
+                //console.log(response.header('x-session-token', uuid));
                 response.header('x-session-token', uuid).status(200).json(userResult);
             });
         } else {
