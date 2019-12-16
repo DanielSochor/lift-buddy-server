@@ -33,6 +33,12 @@ router.get('/api/userinfo', (request, response) => {
     console.log('api/userinfo hit in users.js');
     console.log('passed in request body is: ');
     console.log(request.body);
+    //console.log('passed in request.headers[x-session-token] is: ');
+    //console.log(request.headers['x-session-token']);
+    //console.log('passed in request.headers[session_token] is: ');
+    //console.log(request.headers[session_token]);
+    //console.log('passed in request.body[session_token] is: ');
+    //console.log(request.body[session_token]);
     user.selectWhere({ session_token: request.headers['x-session-token'] }, (error, result) => {
     //can't use local storage as this is server side
     //user.selectWhere({ session_token: localStorage['x-session-token'] }, (error, result) => {
