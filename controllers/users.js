@@ -29,10 +29,11 @@ let router = express.Router();
     //next();
  // });
 
-router.get('/api/user', (request, response) => {
-    console.log('api/user hit in users.js');
+router.get('/api/userinfo', (request, response) => {
+    console.log('api/userinfo hit in users.js');
     user.selectWhere({ session_token: request.headers['x-session-token'] }, (error, result) => {
-        if (result.length) {
+    //user.selectWhere({ session_token: localStorage['x-session-token'] }, (error, result) => {
+       if (result.length) {
             response.status(200).json(result[0]);
         } else {
             response.status(404).json({ 'error': 'user not found' });
