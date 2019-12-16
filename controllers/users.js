@@ -29,10 +29,10 @@ let router = express.Router();
     //next();
  // });
 
-router.get('/api/userinfo', (request, response) => {
+router.get('/api/user/userinfo', (request, response) => {
     console.log('api/userinfo hit in users.js');
     console.log('passed in request body is: ');
-    console.log(request.body);
+    console.log(request);
     //console.log('passed in request.headers[x-session-token] is: ');
     //console.log(request.headers['x-session-token']);
     //console.log('passed in request.headers[session_token] is: ');
