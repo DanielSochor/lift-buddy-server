@@ -31,6 +31,8 @@ let router = express.Router();
 
 router.get('/api/userinfo', (request, response) => {
     console.log('api/userinfo hit in users.js');
+    console.log('passed in request headers are: ');
+    console.log(request.headers);
     user.selectWhere({ session_token: request.headers['x-session-token'] }, (error, result) => {
     //can't use local storage as this is server side
     //user.selectWhere({ session_token: localStorage['x-session-token'] }, (error, result) => {
@@ -38,7 +40,7 @@ router.get('/api/userinfo', (request, response) => {
             response.status(200).json(result[0]);
         } else {
             response.status(404).json({ 'error': 'user not found' });
-            console.log('attempt to get user infor was made');
+            console.log('attempt to get user info was made');
         }
     })
 });
