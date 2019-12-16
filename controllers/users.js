@@ -38,6 +38,7 @@ router.get('/api/userinfo', (request, response) => {
             response.status(200).json(result[0]);
         } else {
             response.status(404).json({ 'error': 'user not found' });
+            console.log('attempt to get user infor was made');
         }
     })
 });
