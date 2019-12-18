@@ -19,16 +19,6 @@ let router = express.Router();
 
 //POST route for user logout
 
-//functions
-
-//handle login - 
-
-//router.use(function(req, res, next) {
-  //  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    //next();
- // });
-
 router.get('/api/user/userinfo', (request, response) => {
     console.log('api/userinfo hit in users.js');
     console.log('passed in request.headers are: ');
