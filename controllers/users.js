@@ -85,9 +85,9 @@ router.post('/api/user/login', (request, response) => {
     }
 });
 
-router.post('/api/user/logout', (request, response) => {
-    users.removeSession(request.headers['x-session-token'], function(error, result){
-        response.json({'message': 'user logged out successfully'});
+router.delete('/api/user/logout', (request, response) => {
+    user.update({ session_token: request.headers['x-session-token'] }, (error, result) => {
+        response.status(200).json({ 'message': 'user logged out successfully' });
     });
 });
 
