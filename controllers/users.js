@@ -133,20 +133,6 @@ let handleLogIn = (request, response, error, result) => {
     }
 };
 
-
-
-
-
-
-
-
-// POST route for user log out
-router.delete('/api/users/loginX', (request, response) => {
-    user.update({ session_token: request.headers['x-session-token'] }, (error, result) => {
-        result.status(200).json({ 'message': 'user logged out successfully' });
-    });
-});
-
 // Format the JSON user response object
 let formatUsersObject = result => {
     let newResult = {
