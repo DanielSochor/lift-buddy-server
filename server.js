@@ -52,6 +52,8 @@ app.use(cors({
 //app.options('*', cors())
 //THIS did not help
 
+app.options('https://lift-buddy-client.herokuapp.com', cors());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static('client/build'));
