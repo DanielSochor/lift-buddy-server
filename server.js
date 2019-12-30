@@ -36,13 +36,16 @@ app.use(cors({
   credentials: true, 
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
-  optionsSuccessStatus: 204,
-  origin: 'https://lift-buddy-client.herokuapp.Kcom/'
+  preflightContinue: false,
+  //optionsSuccessStatus: 204,
+  //origin: 'https://lift-buddy-client.herokuapp.Kcom/'
 }));
 //seems that origin is ignored as adding the extra / and K did nothing
+//bottom options commented out as they appear to have no effect
 
 //try to enable pre-flight across the board:
-app.options('*', cors())
+//app.options('*', cors())
+//THIS did not help
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
