@@ -36,7 +36,7 @@ app.use(cors({
   credentials: true, 
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
-  //optionsSuccessStatus: 204,
+  optionsSuccessStatus: 204,
   origin: whitelist
 }));
 
