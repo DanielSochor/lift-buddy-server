@@ -36,8 +36,9 @@ app.use(cors({
   credentials: true, 
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
+  origin: true,
 
-  maxAge: 3600,
+  //maxAge: 3600,
   //allowedHeaders: ['x-session-token'],
   //adding X-session-token to exposedHeaders didn't help
   //preflightContinue: true,
