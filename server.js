@@ -37,7 +37,7 @@ app.use(cors({
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
   optionsSuccessStatus: 204,
-  origin: 'https://lift-buddy-client.herokuapp.com'
+  origin: 'https://lift-buddy-client.herokuapp.com/'
 }));
 
 // Serve up static assets (usually on heroku)
