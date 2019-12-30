@@ -34,9 +34,11 @@ app.use(express.json());
 //this should enable CORS preflight
 app.use(cors({
   credentials: true, 
-  exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'X-session-token' ],
+  exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
+  allowedHeaders: ['x-session-token'],
 
+  //adding X-session-token to exposedHeaders didn't help
   //preflightContinue: false,
   //optionsSuccessStatus: 204,
   //origin: 'https://lift-buddy-client.herokuapp.Kcom/'
