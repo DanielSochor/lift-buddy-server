@@ -41,8 +41,9 @@ app.use(cors({
   //restrict to a specific origin
   origin: 'https://lift-buddy-client.herokuapp.com/',
 
+
   maxAge: 3600,
-  allowedHeaders: ['x-session-token'],
+  allowedHeaders: ['X-PING-OTHER','x-session-token'],
   //adding X-session-token to exposedHeaders didn't help
   preflightContinue: true,
   optionsSuccessStatus: 204,
