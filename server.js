@@ -37,8 +37,9 @@ app.use(cors({
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
   optionsSuccessStatus: 204,
-  origin: 'https://lift-buddy-client.herokuapp.com/'
+  origin: 'https://lift-buddy-client.herokuapp.Kcom/'
 }));
+//seems that origin is ignored as adding the extra / did nothing
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
