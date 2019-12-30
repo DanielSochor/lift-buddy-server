@@ -33,10 +33,13 @@ app.use(express.json());
 
 //this should enable CORS preflight
 app.use(cors({
+  //this enables cookies over CORS
   credentials: true, 
+  //expose headers beyond the default 6
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
-  origin: true,
+  //restrict to a specific origin
+  origin: 'hhtps://www.chacha.com',
 
   //maxAge: 3600,
   //allowedHeaders: ['x-session-token'],
@@ -52,7 +55,8 @@ app.use(cors({
 //app.options('*', cors())
 //THIS did not help
 
-app.options('https://lift-buddy-client.herokuapp.com', cors());
+//app.options('https://lift-buddy-client.herokuapp.com', cors());
+//THIS did not help
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
