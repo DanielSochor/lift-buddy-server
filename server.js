@@ -42,11 +42,11 @@ app.use(cors({
   origin: 'https://lift-buddy-client.herokuapp.com/',
 
 
-  maxAge: 3600,
-  allowedHeaders: ['X-PING-OTHER','x-session-token'],
+  //maxAge: 3600,
+  //allowedHeaders: ['X-PING-OTHER','x-session-token'],
   //adding X-session-token to exposedHeaders didn't help
-  preflightContinue: true,
-  optionsSuccessStatus: 204,
+  //preflightContinue: true,
+  //optionsSuccessStatus: 204,
 }));
 //seems that origin is ignored as adding the extra / and K did nothing
 //bottom options commented out as they appear to have no effect
