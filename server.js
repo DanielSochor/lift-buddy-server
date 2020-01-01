@@ -37,7 +37,7 @@ app.use(cors({
   credentials: true, 
   //expose headers beyond the default 6
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
-  methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
+  methods: ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT'],
   //restrict to a specific origin
   origin: URLWhiteList,
 
