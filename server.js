@@ -40,7 +40,7 @@ app.use(cors({
   exposedHeaders: ['X-PINGOTHER', 'Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
   methods: ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT'],
   //restrict to a specific origin
-  origin: URLWhiteList,
+  //origin: URLWhiteList,
 
   //this did not work
   origin: '*',
