@@ -6,8 +6,9 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const baseURL = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_SERVER_URL : process.env.REACT_APP_LOCAL_URL;
+//const baseURL = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_SERVER_URL : process.env.REACT_APP_LOCAL_URL;
 //TODO: create an origin whitelist with both URLS
+//These values used for baseURL don't exist server side
 
 //TODO: doesn't appear to like the trailing / in var whitelist = [process.env.REACT_APP_LOCAL_URL
 //TODO: doesn't like http://localhost:3001, may not like the lift-buddy-server
@@ -31,7 +32,7 @@ var corsOptionsDelegate = function (req, callback) {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//this should enable CORS preflight
+//this attempts to enable CORS preflight
 app.use(cors({
   //this enables cookies over CORS
   credentials: true, 
@@ -42,7 +43,7 @@ app.use(cors({
   origin: URLWhiteList,
 
   allowedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
-  preflightContinue: true,
+  preflightContinue: false,
   //maxAge: 3600,
   //allowedHeaders: ['X-PING-OTHER','x-session-token'],
   //adding x-session-token to exposedHeaders didn't help
