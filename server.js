@@ -39,7 +39,7 @@ app.use(cors({
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
   //restrict to a specific origin
-  origin: 'https://lift-buddy-client.herokuapp.com/',
+  origin: whitelist,
 
 
   //maxAge: 3600,
