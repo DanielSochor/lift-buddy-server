@@ -41,6 +41,7 @@ app.use(cors({
   //restrict to a specific origin
   origin: whitelist,
 
+  allowedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
 
   //maxAge: 3600,
   //allowedHeaders: ['X-PING-OTHER','x-session-token'],
