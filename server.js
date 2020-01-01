@@ -40,10 +40,11 @@ app.use(cors({
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
   methods: ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT'],
   //restrict to a specific origin
-  origin: URLWhiteList,
+  //origin: URLWhiteList,
+  origin: '*',
 
   allowedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
-  preflightContinue: false,
+  //preflightContinue: false,
   //maxAge: 3600,
   //allowedHeaders: ['X-PING-OTHER','x-session-token'],
   //adding x-session-token to exposedHeaders didn't help
