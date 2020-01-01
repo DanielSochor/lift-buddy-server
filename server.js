@@ -36,7 +36,7 @@ app.use(cors({
   //this enables cookies over CORS
   credentials: true, 
   //expose headers beyond the default 6
-  exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
+  exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
   methods: ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT'],
   //restrict to a specific origin
   origin: URLWhiteList,
@@ -45,7 +45,7 @@ app.use(cors({
   preflightContinue: true,
   //maxAge: 3600,
   //allowedHeaders: ['X-PING-OTHER','x-session-token'],
-  //adding X-session-token to exposedHeaders didn't help
+  //adding x-session-token to exposedHeaders didn't help
   //preflightContinue: true,
   //optionsSuccessStatus: 204,
 }));
