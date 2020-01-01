@@ -11,7 +11,7 @@ const baseURL = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_
 
 //TODO: doesn't appear to like the trailing / in var whitelist = [process.env.REACT_APP_LOCAL_URL
 //TODO: doesn't like http://localhost:3001, may not like the lift-buddy-server
-var whitelist = ['http://localhost:3000', 'https://lift-buddy-client.herokuapp.com']
+var URLWhiteList = ['http://localhost:3000', 'https://lift-buddy-client.herokuapp.com']
 
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions = {
@@ -39,9 +39,9 @@ app.use(cors({
   exposedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
   //restrict to a specific origin
-  origin: whitelist,
+  origin: URLWhiteList,
 
-  allowedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token' ],
+  allowedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
 
   //maxAge: 3600,
   //allowedHeaders: ['X-PING-OTHER','x-session-token'],
