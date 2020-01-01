@@ -42,7 +42,7 @@ app.use(cors({
   origin: URLWhiteList,
 
   allowedHeaders: ['Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
-
+  preflightContinue: true,
   //maxAge: 3600,
   //allowedHeaders: ['X-PING-OTHER','x-session-token'],
   //adding X-session-token to exposedHeaders didn't help
