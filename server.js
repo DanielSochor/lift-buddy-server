@@ -34,7 +34,7 @@ app.use(cors({
   credentials: true, 
 
   //lets the server whitelist headers that browsers are allowed to access
-  exposedHeaders: ['X-PINGOTHER', 'Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token', 'Authorization'],
+  exposedHeaders: ['X-PINGOTHER', 'Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token', 'Content-Type', 'Authorization'],
   
   methods: ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT'],
   //restrict to a specific origins
@@ -51,7 +51,7 @@ app.use(cors({
   //HTTP headers can be used when making the actual request
 
   //specifies which headers are allowed to change the state of the server
-  allowedHeaders: ['Set-Cookie', 'X-PINGOTHER', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token', 'Content-Type', 'Authorization'],
+  allowedHeaders: ['X-PINGOTHER', 'Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token', 'Content-Type', 'Authorization'],
   
   //preflightContinue: false,
   //maxAge: 3600,
