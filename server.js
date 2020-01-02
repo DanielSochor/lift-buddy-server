@@ -28,10 +28,6 @@ var URLWhiteList = ['http://localhost:3000', 'https://lift-buddy-client.herokuap
 //   callback(null, corsOptions);
 // }
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
 //this attempts to enable CORS preflight
 app.use(cors({
   //configures the Access-Control-Allow-Credentials CORS header
@@ -73,6 +69,10 @@ app.use(cors({
 
 //app.options('https://lift-buddy-client.herokuapp.com', cors());
 //THIS did not help
+
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
