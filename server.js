@@ -44,7 +44,9 @@ app.use(cors({
   //restrict to a specific origins
   origin: URLWhiteList,
 
-  vary: origin,
+  //indicates to clients that server responses will differ based on the value of the Origin
+  //doesn't appear to be useful here
+  //vary: origin,
 
   //this did not work
   //origin: '*',
