@@ -14,19 +14,19 @@ const PORT = process.env.PORT || 3001;
 //TODO: doesn't like http://localhost:3001, may not like the lift-buddy-server
 var URLWhiteList = ['http://localhost:3000', 'https://lift-buddy-client.herokuapp.com']
 
-var corsOptionsDelegate = function (req, callback) {
-  var corsOptions = {
-    origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    },
-    //credentials:true
-  }
-  callback(null, corsOptions);
-}
+// var corsOptionsDelegate = function (req, callback) {
+//   var corsOptions = {
+//     origin: function (origin, callback) {
+//       if (whitelist.indexOf(origin) !== -1) {
+//         callback(null, true)
+//       } else {
+//         callback(new Error('Not allowed by CORS'))
+//       }
+//     },
+//     //credentials:true
+//   }
+//   callback(null, corsOptions);
+// }
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -37,7 +37,7 @@ app.use(cors({
   //this enables cookies over CORS
   credentials: true, 
   //expose headers beyond the default 6
-  exposedHeaders: ['X-PINGOTHER', 'Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
+  exposedHeaders: ['X-PINGOTHER', 'Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization'],
   methods: ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT'],
   //restrict to a specific origins
   origin: URLWhiteList,
@@ -45,9 +45,9 @@ app.use(cors({
   //this did not work
   //origin: '*',
 
-  allowedHeaders: ['Set-Cookie', 'X-PINGOTHER', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization' ],
-  preflightContinue: false,
-  maxAge: 3600,
+  //allowedHeaders: ['Set-Cookie', 'X-PINGOTHER', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization'],
+  //preflightContinue: false,
+  //maxAge: 3600,
   //allowedHeaders: ['X-PING-OTHER','x-session-token'],
   //adding x-session-token to exposedHeaders didn't help
   //preflightContinue: true,
