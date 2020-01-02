@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 
 //TODO: doesn't appear to like the trailing / in var whitelist = [process.env.REACT_APP_LOCAL_URL
 //TODO: doesn't like http://localhost:3001, may not like the lift-buddy-server
-var URLWhiteList = ['http://localhost:3000', 'https://lift-buddy-client.herokuapp.com']
+var URLWhiteList = ['http://localhost:3000', 'https://lift-buddy-client.herokuapp.com'];
 
 // var corsOptionsDelegate = function (req, callback) {
 //   var corsOptions = {
@@ -34,23 +34,26 @@ app.use(express.json());
 
 //this attempts to enable CORS preflight
 app.use(cors({
-  //this enables cookies over CORS
+  //configures the Access-Control-Allow-Credentials CORS header
   credentials: true, 
-  //expose headers beyond the default 6
 
-  //lets a server whitelist headers that browsers are allowed to access
-  //exposedHeaders: ['X-PINGOTHER', 'Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization'],
+  //lets the server whitelist headers that browsers are allowed to access
+  exposedHeaders: ['X-PINGOTHER', 'Set-Cookie', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token', 'Authorization'],
   
   methods: ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT'],
   //restrict to a specific origins
   origin: URLWhiteList,
+
+  vary: origin,
 
   //this did not work
   //origin: '*',
 
   //used in response to a preflight request to indicate which
   //HTTP headers can be used when making the actual request
-  //allowedHeaders: ['Set-Cookie', 'X-PINGOTHER', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token','Content-Type','Authorization'],
+
+  //specifies which headers are allowed to change the state of the server
+  allowedHeaders: ['Set-Cookie', 'X-PINGOTHER', 'Content-Length', 'Accept', 'X-Requested-With', 'X-HTTP-Method-Override', 'x-session-token', 'Content-Type', 'Authorization'],
   
   //preflightContinue: false,
   //maxAge: 3600,
