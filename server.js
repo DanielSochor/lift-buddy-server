@@ -6,6 +6,10 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // app.all('*', function(req, res, next) {
 //   var origin = req.get('origin'); 
 //   res.header('Access-Control-Allow-Origin', origin);
@@ -77,10 +81,6 @@ app.use(cors({
 
 //app.options('https://lift-buddy-client.herokuapp.com', cors());
 //THIS did not help
-
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
