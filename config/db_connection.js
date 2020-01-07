@@ -38,15 +38,15 @@
 var mysql = require("mysql");
 var config = require('./config');
 
-var connection = '';
+//var connection = '';
 
-if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-    connection = mysql.createConnection(process.env.DB_URL); 
-};
+//if (process.env.JAWSDB_URL) {
+//    connection = mysql.createConnection(process.env.JAWSDB_URL);
+//} else {
+//    connection = mysql.createConnection(process.env.DB_URL); 
+//};
 
-//var connection = mysql.createConnection(config.mysql.url);
+var connection = mysql.createConnection(config);
 connection.connect(function (error) {
     if (error) throw error;
     console.log("connected to database on " + connection.config.host + " as "
