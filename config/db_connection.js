@@ -46,6 +46,7 @@ if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.DB_URL); 
 };
 
+//var connection = mysql.createConnection(config.mysql.url);
 connection.connect(function (error) {
     if (error) throw error;
     console.log("connected to database on " + connection.config.host + " as "
