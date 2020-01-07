@@ -38,7 +38,14 @@
 var mysql = require("mysql");
 var config = require('./config');
 
-var connection = mysql.createConnection(process.env.JAWSDB_URL);
+var connection = '';
+
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+    connection = mysql.createConnection(process.env.DB_URL); 
+};
+
 connection.connect(function (error) {
     if (error) throw error;
     console.log("connected to database on " + connection.config.host + " as "
