@@ -1,5 +1,5 @@
 let config = {
-   local:{
+   development:{
        mysql:{
            url: process.env.DB_URL
        },
@@ -13,7 +13,7 @@ let config = {
    }
 };
 
-module.exports = config[process.env.APP_ENV || 'local'];
+module.exports = config[process.env.APP_ENV || 'development'];
 
 // let config = {
 // // module.exports = {
