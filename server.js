@@ -10,14 +10,6 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.all('*', function(req, res, next) {
-//   var origin = req.get('origin'); 
-//   res.header('Access-Control-Allow-Origin', origin);
-//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//   res.header('Access-Control-Allow-Headers', 'Content-Type');
-//   next();
-// });
-
 //const baseURL = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_SERVER_URL : process.env.REACT_APP_LOCAL_URL;
 //TODO: create an origin whitelist with both URLS
 //These values used for baseURL don't exist server side
