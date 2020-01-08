@@ -67,13 +67,6 @@ app.use(cors({
 //seems that origin is ignored as adding the extra / and K did nothing
 //bottom options commented out as they appear to have no effect
 
-//try to enable pre-flight across the board:
-//app.options('*', cors())
-//THIS did not help
-
-//app.options('https://lift-buddy-client.herokuapp.com', cors());
-//THIS did not help
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static('client/build'));
