@@ -38,22 +38,22 @@
 var mysql = require("mysql");
 var config = require('./config');
 
-var connection = '';
+// var connection = '';
 
-if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-    connection = mysql.createConnection(process.env.DB_URL);
-    //    connection = mysql.createConnection({
-    //        host: 'localhost',
-    //        user: 'root',
-    //        password: 'root',
-    //        database: 'lift_buddy',
-    //        port: 8889,
-    //    }); 
-};
+// if (process.env.JAWSDB_URL) {
+//     connection = mysql.createConnection(process.env.JAWSDB_URL);
+// } else {
+//     connection = mysql.createConnection(process.env.DB_URL);
+//     //    connection = mysql.createConnection({
+//     //        host: 'localhost',
+//     //        user: 'root',
+//     //        password: 'root',
+//     //        database: 'lift_buddy',
+//     //        port: 8889,
+//     //    }); 
+// };
 
-//var connection = mysql.createConnection(config);
+var connection = mysql.createConnection(config.mysql.url);
 connection.connect(function (error) {
     if (error) throw error;
     console.log("connected to database on " + connection.config.host + " as "
