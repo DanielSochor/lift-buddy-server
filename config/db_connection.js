@@ -1,5 +1,5 @@
 var mysql = require("mysql");
-var config = require('./config');
+// var config = require('./config');
 
 // var connection = '';
 
@@ -16,8 +16,8 @@ if (process.env.NODE_ENV === 'production') {
      //    }); 
  };
 
+//strangely adding this causes CORS errors
 //var connection = mysql.createConnection(config.mysql.url);
-//var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect(function (error) {
     if (error) throw error;
