@@ -12,7 +12,9 @@ app.use(express.json());
 
 //const baseURL = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_SERVER_URL : process.env.REACT_APP_LOCAL_URL;
 //TODO: create an origin whitelist with both URLS
-//These values used for baseURL don't exist server side
+//These values used for baseURL RAECT_APP don't exist server side
+
+console.log('process.env.NODE_ENV is:', process.env.NODE_ENV);
 
 //TODO: doesn't appear to like the trailing / in var whitelist = [process.env.REACT_APP_LOCAL_URL
 //TODO: doesn't like http://localhost:3001, may not like the lift-buddy-server
