@@ -57,8 +57,8 @@ let orm = {
         return query;
     },
     select: function (query, callback) {
-        console.log('incoming query is: ');
-        console.log(query);
+        //console.log('incoming query is: ');
+        //console.log(query);
         let queryString = "SELECT ?? FROM ??";
         let searchCriteria = [query.columns || ['*'], query.table];
         //let searchCriteria =  [ [ '*' ], 'users', { username: 'a' } ];
@@ -67,12 +67,12 @@ let orm = {
         }
         //searchCriteria = { username: 'a'};
         let statement = connection.query(queryString, searchCriteria, function (error, result) {
-            console.log('query string is: ');
-            console.log(queryString);
-            console.log('searchCriteria is: ');
-            console.log(searchCriteria);
-            console.log('result is: ');
-            console.log(result);
+            //console.log('query string is: ');
+            //console.log(queryString);
+            //console.log('searchCriteria is: ');
+            //console.log(searchCriteria);
+            //console.log('result is: ');
+            //console.log(result);
             callback(error, result);
         });
         //console.log('statement is: ');
