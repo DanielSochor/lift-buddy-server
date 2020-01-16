@@ -20,15 +20,15 @@ let router = express.Router();
 //POST route for user logout
 
 router.get('/api/user/userinfo', (request, response) => {
-    console.log('api/userinfo hit in users.js');
-    console.log('passed in request.headers are: ');
-    console.log(request.headers);
+    //console.log('api/userinfo hit in users.js');
+    //console.log('passed in request.headers are: ');
+    //console.log(request.headers);
     user.selectWhere({ session_token: request.headers['x-session-token'] }, (error, result) => {
        if (result.length) {
             response.status(200).json(result[0]);
         } else {
             response.status(404).json({ 'error': 'user not found' });
-            console.log('attempt to get user info was made');
+            //console.log('attempt to get user info was made');
         }
     })
 });
