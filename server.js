@@ -20,20 +20,6 @@ console.log('process.env.NODE_ENV is:', process.env.NODE_ENV);
 //TODO: doesn't like http://localhost:3001, may not like the lift-buddy-server
 var URLWhiteList = ['http://localhost:3000', 'https://lift-buddy-client.herokuapp.com'];
 
-// var corsOptionsDelegate = function (req, callback) {
-//   var corsOptions = {
-//     origin: function (origin, callback) {
-//       if (whitelist.indexOf(origin) !== -1) {
-//         callback(null, true)
-//       } else {
-//         callback(new Error('Not allowed by CORS'))
-//       }
-//     },
-//     //credentials:true
-//   }
-//   callback(null, corsOptions);
-// }
-
 //this attempts to enable CORS preflight
 app.use(cors({
   //configures the Access-Control-Allow-Credentials CORS header
