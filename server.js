@@ -10,10 +10,6 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//const baseURL = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_SERVER_URL : process.env.REACT_APP_LOCAL_URL;
-//TODO: create an origin whitelist with both URLS
-//These values used for baseURL RAECT_APP don't exist server side
-
 console.log('process.env.NODE_ENV is:', process.env.NODE_ENV);
 
 //TODO: doesn't appear to like the trailing / in var whitelist = [process.env.REACT_APP_LOCAL_URL
@@ -47,12 +43,10 @@ app.use(cors({
   
   //preflightContinue: false,
   //maxAge: 3600,
-  //allowedHeaders: ['X-PING-OTHER','x-session-token'],
   //adding x-session-token to exposedHeaders didn't help
   //preflightContinue: true,
   //optionsSuccessStatus: 204,
 }));
-//seems that origin is ignored as adding the extra / and K did nothing
 //bottom options commented out as they appear to have no effect
 
 // Serve up static assets (usually on heroku)
